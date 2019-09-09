@@ -1,12 +1,24 @@
-name: 'Container Action Template'
-description: 'Get started with Container actions'
-author: 'GitHub'
+name: Github Releases
+description: Create a new release on GitHub with ghr
+author: 'izumin5210'
 inputs: 
-  myInput:
-    description: 'Input to use'
-    default: 'world'
+  release-name:
+    description: "Title of a release"
+    default: ''
+  release-body:
+    description: "Description of a release"
+    default: ''
+  path:
+    description: 'Path to artifacts'
+    default: './dist'
+  ghr-version:
+    description: 'Version of github.com/tcnksm/ghr'
+    default: 'v0.12.2'
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.myInput }}
+    - ${{ inputs.name }}
+    - ${{ inputs.body }}
+    - ${{ inputs.path }}
+    - ${{ inputs.ghr-version }}
